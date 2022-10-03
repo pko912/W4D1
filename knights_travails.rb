@@ -3,6 +3,8 @@ require 'byebug'
 
 class KnightPathFinder
 
+    attr_accessor :considered_positions
+
     def self.valid_moves(pos)
         relative_arr = [[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]]
         valid_moves = []
@@ -35,7 +37,7 @@ class KnightPathFinder
     end
 
     def new_move_positions(pos)
-        KnightPathFinder.valid_moves(pos)
+        KnightPathFinder.valid_moves(pos) - @considered_positions
     end
 
     def find_path(arr)
@@ -46,5 +48,7 @@ class KnightPathFinder
 
 end
 
-# p k = KnightPathFinder.new([0,0])
-p KnightPathFinder.valid_moves([4,4])
+p k = KnightPathFinder.new([0,0])
+# p KnightPathFinder.valid_moves([4,4])
+p k.considered_positions << [1,2]
+p k.new_move_positions([0,0])
