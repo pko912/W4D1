@@ -34,6 +34,25 @@ class KnightPathFinder
     end
 
     def build_move_tree
+       queue = [@root_node]
+       until queue.empty?
+         curr_poss = queue.shift
+         queue += position.new_move_positions
+
+
+    end
+
+    def bfs(target_value)
+        queue = [self]
+        until queue.empty?
+            node = queue.shift
+            if node.value == target_value
+                return node
+            else
+                queue += node.children
+            end
+        end
+        
     end
 
     def new_move_positions(pos)
